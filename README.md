@@ -1,2 +1,57 @@
 # drlemergencycom
 Intelligent Aerial Relay Deployment for Enhancing Connectivity in Emergency Communications source code
+
+
+
+## Requirements
+
+```
+python==3.7 or newer
+numpy==1.18.5 or newer
+keras==2.4.3 or newer
+tensorflow==2.3.0 or newer
+matplotlib==3.3.0 or newer
+scikit-image==0.16.2 or newer
+tqdm==4.45.0 or newer
+```
+
+## Signal map information is formatted as PNG file one pixel representing on signal cells. 
+
+* red vulnerable cell 
+* magenta no-fly cell
+* orange heavy traffic areas
+* blue	driving road (EV moves)
+* yellow ABS depot
+
+The tester can create a new map by any tool which can generate PNG with above color codes.
+
+The terrestrial map to know line-of-sight (LoS) or non-line-of-sight (NLoS) info can be based on a pre-defined map as in rescue.npy (Shadowing file)
+
+
+
+## How to use
+
+Train a new model with your map (in the image folder).
+
+```
+python train.py --gpu --config config/rescue.json --id rescue-map
+
+--gpu                       Activates GPU acceleration for training
+--config                    Path to config file in json format
+--id                        Overrides standard name for logfiles and model
+```
+
+```
+python evrelay.py --weights models/trained-model --config config/rescue.json --id rescue-map --samples 30
+
+
+--Test                      Path to weights of trained model
+--weights                   Path to weights of trained model
+--config                    Path to config file in json format (hyperparameters)
+--id                        Name for exported files
+--samples                   Number of Monte Carlo over random scenario parameters
+--seed                      Seed for repeatability
+--visual                    Plot data
+--num_agents                Overrides number of agents range, e.g. 12 for random range of [1,2] agents, or 11 for single agent
+```
+
