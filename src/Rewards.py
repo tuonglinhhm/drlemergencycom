@@ -9,6 +9,8 @@ class RewardParams(GridRewardParams):
         self.data_multiplier = 1.0
 
 
+ALPHA = 2
+BETA  = 1
 
 class Rewards(GridRewards):
     cumulative_reward: float = 0.0
@@ -21,8 +23,7 @@ class Rewards(GridRewards):
     def calculate_reward(self, state: State, action: GridActions, next_state: State):
         reward = self.calculate_motion_rewards(state, action, next_state)
 
-        # Reward the collected data
-        reward += self.params.data_multiplier * (state.get_remaining_data() - next_state.get_remaining_data())
+        reward += self.params.data_multiplier * (ALPHA(state.get_coverage() * state.get_data_rate())/ (BETA * state.get_energy()))
 
         # Cumulative reward
         self.cumulative_reward += reward
