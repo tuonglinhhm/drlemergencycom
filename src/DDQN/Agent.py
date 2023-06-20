@@ -39,8 +39,8 @@ class DDQNAgentParams:
         self.use_scalar_input = False
         self.relative_scalars = False
         self.blind_agent = False
-        self.max_uavs = 3
-        self.max_devices = 10
+        self.max_abs = 15
+        self.max_evs = 10
 
         # Printing
         self.print_summary = False
