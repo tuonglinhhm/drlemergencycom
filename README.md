@@ -6,13 +6,13 @@ EVRELAY: Intelligent Aerial Relay Deployment for Enhancing Connectivity in Emerg
 ## Requirements
 
 ```
-python==3.7 or newer
-numpy==1.18.5 or newer
-keras==2.4.3 or newer
-tensorflow==2.3.0 or newer
-matplotlib==3.3.0 or newer
-scikit-image==0.16.2 or newer
-tqdm==4.45.0 or newer
+python==3.7 
+numpy==1.18.5 
+keras==2.4.3 
+tensorflow==2.3.0 
+matplotlib==3.3.0
+scikit-image==0.16.2 
+tqdm==4.45.0
 ```
 
 ## Signal map information is formatted as PNG file one pixel representing on signal cells. 
