@@ -25,13 +25,13 @@ sample_size = len(y)
 #Student T test
 t_critical = stats.t.ppf((1 + confidence_level) / 2, df=sample_size - 1)
 margin_of_error = t_critical * (sample_std / np.sqrt(sample_size))
-
-lower_bound_y = sample_mean - margin_of_error
-upper_bound_y = sample_mean + margin_of_error
- 
 # Make the plot
 plt.plot(x, y, marker='x', linestyle='-', color='green', label='EVRELAY')
-plt.fill_between(x, y-lower_bound_y, y+upper_bound_y, color='green', alpha=0.3)
+plt.errorbar(x, EVRELAY, yerr=margin_of_error, marker='o', linestyle='-', color='green', capsize=5)
+
+plt.annotate('Upper bound', xy=(10, 21), xytext=(9, 23.5),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+plt.annotate('Lower bound', xy=(10, 19), xytext=(10.5, 11.5),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+
 
 plt.xlabel('Number of ABSs')
 plt.ylabel('Avg. service coverage')
@@ -91,6 +91,14 @@ for i, box in enumerate(bp['boxes']):
     # Set the colour of the upper caps
     plt.setp(bp['caps'][2 * i + 1], color=colours[j])
 # Fill the boxes with colours (requires patch_artist=True)
+
+plt.annotate('First Quartile', xy=(2.8, 16.9), xytext=(1, 18),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+plt.annotate('Third Quartile', xy=(3.2, 16), xytext=(3.6, 15),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+plt.annotate('Maximum', xy=(3, 18), xytext=(2.2, 20),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+
+plt.annotate('Minimum', xy=(3, 15), xytext=(3, 13),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
+
+plt.annotate('Median', xy=(3, 16.5), xytext=(2, 12.5),arrowprops=dict(facecolor='black', arrowstyle='-|>'), fontsize=8.5)
     
 plt.grid(alpha=.6)
 plt.tight_layout()
