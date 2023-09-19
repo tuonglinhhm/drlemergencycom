@@ -102,5 +102,6 @@ plt.annotate('Median', xy=(3, 16.5), xytext=(2, 12.5),arrowprops=dict(facecolor=
     
 plt.grid(alpha=.6)
 plt.tight_layout()
+plt.xlabel('(Number of ABSs = 10)')
 plt.savefig("TVT_Service_coverage_2.pdf")
 plt.show()
